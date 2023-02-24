@@ -5,7 +5,6 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import { Header } from "./components/Header";
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 export const SearchContext = React.createContext();
 function App() {
