@@ -30,3 +30,23 @@
     }
   }
 }
+
+
+
+@media screen and (max-width: 760px) {
+  .header {
+    padding: 20px 0;
+
+    .container {
+      flex-direction: column;
+    }
+
+    &__logo {
+      margin-bottom: 20px;
+    }
+
+    .button--cart {
+      margin-top: 20px;
+    }
+  }
+}

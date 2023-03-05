@@ -8,12 +8,11 @@ import BasicPagination from "../components/Pagination/Pagination";
 import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  parseCategoryAndPages,
   setActiveCategory,
 } from "../redux/slice/categorySort_and_PaginationSlice";
 import axios from "axios";
 import qs from "qs";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -41,11 +40,6 @@ const Home = () => {
   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
   const skeleton = [...new Array(6)].map((_, i) => <SkeletonPizza key={i} />);
 
-  // useEffect(() => {
-  //   const params = qs.parse(window.location.search.substring(1));
-  //   dispatch(parseCategoryAndPages(params));
-  // }, []);
-
   useEffect(() => {
     setisLoading(true);
     axios
@@ -53,7 +47,7 @@ const Home = () => {
         `https://632cc61b519d17fb53b3b7a6.mockapi.io/items?sortBy=${sortCategories[sortParam]}` +
           `${activeCategory ? `&category=${activeCategory}` : ""}` +
           `${searchValue ? `&search=${searchValue}` : ""}` +
-          `${paginationPages ? `&page=${paginationPages} &limit=4` : ""}`
+          `${paginationPages ? `&page=${paginationPages} &limit=12` : ""}`
       )
       .then((res) => {
         setItems(res.data);
@@ -82,7 +76,7 @@ const Home = () => {
         />
         <Sort />
       </div>
-      <h2 className="content__title">All pizzas</h2>
+      <h2  className="content__title">All pizzas</h2>
       <div className="content__items">{isLoading ? skeleton : pizzas}</div>
       <BasicPagination />
     </>
